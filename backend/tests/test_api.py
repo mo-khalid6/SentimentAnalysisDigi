@@ -45,8 +45,8 @@ def test_analyze_success(client):
     mock_sentiment = ("Positive", 0.94)
     mock_summary = "This is a summary of the analyzed text."
 
-    with patch("app.services.ml_service.run_sentiment", return_value=mock_sentiment), \
-         patch("app.services.ml_service.run_summarization", return_value=mock_summary):
+    with patch("app.services.analysis_service.run_sentiment", return_value=mock_sentiment), \
+         patch("app.services.analysis_service.run_summarization", return_value=mock_summary):
         response = client.post("/analyze", json={"text": "This is a great product that I love very much!"})
 
     assert response.status_code == 200
@@ -90,8 +90,8 @@ def test_history_after_analysis(client):
     mock_sentiment = ("Neutral", 0.75)
     mock_summary = "Neutral tone detected in the provided text."
 
-    with patch("app.services.ml_service.run_sentiment", return_value=mock_sentiment), \
-         patch("app.services.ml_service.run_summarization", return_value=mock_summary):
+    with patch("app.services.analysis_service.run_sentiment", return_value=mock_sentiment), \
+         patch("app.services.analysis_service.run_summarization", return_value=mock_summary):
         client.post("/analyze", json={"text": "The weather today is neither good nor bad."})
 
     response = client.get("/history")
@@ -110,8 +110,8 @@ def test_history_limit(client):
     mock_sentiment = ("Positive", 0.9)
     mock_summary = "Positive content."
 
-    with patch("app.services.ml_service.run_sentiment", return_value=mock_sentiment), \
-         patch("app.services.ml_service.run_summarization", return_value=mock_summary):
+    with patch("app.services.analysis_service.run_sentiment", return_value=mock_sentiment), \
+         patch("app.services.analysis_service.run_summarization", return_value=mock_summary):
         for i in range(5):
             client.post("/analyze", json={"text": f"This is a positive test sentence number {i} that is long enough."})
 
