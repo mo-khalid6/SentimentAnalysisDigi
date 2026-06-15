@@ -1,0 +1,89 @@
+# ======================
+# PYTHON / BACKEND
+# ======================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.Python
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# HuggingFace model cache (can be GBs)
+model_cache/
+*.bin
+*.safetensors
+*.ot
+*.onnx
+
+# Logs
+*.log
+logs/
+
+# Test / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+
+# ======================
+# NODE / FRONTEND
+# ======================
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Build output
+frontend/dist/
+frontend/build/
+
+# Vite cache
+.vite/
+
+# TypeScript
+*.tsbuildinfo
+
+# ======================
+# OS / EDITOR
+# ======================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ======================
+# PROJECT SPECIFIC
+# ======================
+# Zip artifacts
+*.zip
+
+# Stitch dashboard (generated artifact)
+stitch_sentiment_ai_dashboard/
