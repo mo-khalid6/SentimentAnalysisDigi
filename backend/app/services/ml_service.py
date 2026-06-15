@@ -4,6 +4,13 @@ from typing import Optional
 from app.core.logging import get_logger
 from app.core.config import get_settings
 
+# Check if ML dependencies are available (skipped in lightweight CI)
+try:
+    import torch  # noqa: F401
+    ML_AVAILABLE = True
+except ImportError:
+    ML_AVAILABLE = False
+
 logger = get_logger(__name__)
 
 _sentiment_pipeline = None
@@ -26,6 +33,8 @@ LABEL_MAP = {
 
 def get_sentiment_pipeline():
     global _sentiment_pipeline
+    if not ML_AVAILABLE:
+        raise RuntimeError("ML dependencies (torch/transformers) are not installed.")
     if _sentiment_pipeline is None:
         with _sentiment_lock:
             if _sentiment_pipeline is None:
@@ -45,6 +54,8 @@ def get_sentiment_pipeline():
 
 def get_summarizer_pipeline():
     global _summarizer_pipeline
+    if not ML_AVAILABLE:
+        raise RuntimeError("ML dependencies (torch/transformers) are not installed.")
     if _summarizer_pipeline is None:
         with _summarizer_lock:
             if _summarizer_pipeline is None:
